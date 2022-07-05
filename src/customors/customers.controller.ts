@@ -5,11 +5,11 @@ import {
   ParseIntPipe,
   HttpException,
   HttpStatus,
-  // Post,
+  Post,
 } from '@nestjs/common';
 import { CustomersService } from './customers.service';
 
-@Controller('customors')
+@Controller('customers')
 export class CustomersController {
   constructor(private customersService: CustomersService) {}
 
@@ -26,6 +26,6 @@ export class CustomersController {
     else throw new HttpException('Customer Not Found!', HttpStatus.NOT_FOUND);
   }
 
-  // @Post('create')
-  // createCustomer() {}
+  @Post('create')
+  createCustomer() {}
 }
