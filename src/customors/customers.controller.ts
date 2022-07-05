@@ -6,8 +6,10 @@ import {
   HttpException,
   HttpStatus,
   Post,
+  Body,
 } from '@nestjs/common';
 import { CustomersService } from './customers.service';
+import { CreateCustomerDto } from 'src/customors/CreateCustomer.dto';
 
 @Controller('customers')
 export class CustomersController {
@@ -27,5 +29,7 @@ export class CustomersController {
   }
 
   @Post('create')
-  createCustomer() {}
+  createCustomer(@Body() createCustomerDto: CreateCustomerDto) {
+    return this.customersService.createCustomer(createCustomerDto);
+  }
 }
