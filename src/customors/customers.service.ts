@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class CustomorsService {
+export class CustomersService {
   private users = [
     {
       id: 1,
@@ -20,7 +20,7 @@ export class CustomorsService {
     },
   ];
 
-  getAllCustomors() {
+  getAllCustomers() {
     return this.users;
   }
 
