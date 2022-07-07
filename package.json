@@ -4,7 +4,7 @@
   "description": "Rest Full api with nest js",
   "author": "Thamer Ayachi",
   "private": false,
-  "license": "MIT",
+  "license": "WTFPL 2.0",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
