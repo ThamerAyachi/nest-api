@@ -7,6 +7,8 @@ import {
   HttpStatus,
   Post,
   Body,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from 'src/customors/CreateCustomer.dto';
@@ -29,7 +31,14 @@ export class CustomersController {
   }
 
   @Post('create')
+  @UsePipes(ValidationPipe)
   createCustomer(@Body() createCustomerDto: CreateCustomerDto) {
-    return this.customersService.createCustomer(createCustomerDto);
+    const customer = this.customersService.createCustomer(createCustomerDto);
+    const req = {
+      statusCode: 201,
+      message: 'Customer Created!',
+      data: customer,
+    };
+    return req;
   }
 }
