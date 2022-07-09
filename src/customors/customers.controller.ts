@@ -24,9 +24,9 @@ export class CustomersController {
 
   @Get(':id')
   findCustomerById(@Param('id', ParseIntPipe) id: number) {
-    const customors = this.customersService.findCustomerById(id);
+    const customer = this.customersService.findCustomerById(id);
 
-    if (customors) return customors;
+    if (customer) return customer;
     else throw new HttpException('Customer Not Found!', HttpStatus.NOT_FOUND);
   }
 
