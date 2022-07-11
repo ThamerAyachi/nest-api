@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomersModule } from './customors/customers.module';
 import entities from './typeorm';
@@ -18,6 +19,7 @@ import { UsersModule } from './users/users.module';
       entities: entities,
       synchronize: true,
     }),
+    ConfigModule.forRoot(),
   ],
   controllers: [],
   providers: [],
