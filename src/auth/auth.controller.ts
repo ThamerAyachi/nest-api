@@ -5,5 +5,6 @@ import { AuthGuard } from '@nestjs/passport';
 export class AuthController {
   @UseGuards(AuthGuard('local'))
   @Post('login')
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   async login(@Request() req) {}
 }
