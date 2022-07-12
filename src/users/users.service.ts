@@ -1,22 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User as UserEntity } from 'src/typeorm/User';
+import { encodePassword } from 'src/utils/bcrypt';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/CreateUser.dto';
-import { SerializedUser } from './SerializedUser';
 import { User } from './User';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(UserEntity)
-    private userRepository: Repository<UserEntity>,
+    private readonly userRepository: Repository<UserEntity>,
   ) {}
 
   private Users: User[] = [];
 
   getUsers() {
-    return this.Users.map((user) => new SerializedUser(user));
+    // return this.Users.map((user) => new SerializedUser(user));
+    const Users = this.userRepository.find();
+    return Users;
   }
 
   getUserByUsername(username: string) {
@@ -28,7 +30,8 @@ export class UsersService {
   }
 
   createUser(createUserDto: CreateUserDto) {
-    const newUser = this.userRepository.create(createUserDto);
+    const password = encodePassword(createUserDto.password);
+    const newUser = this.userRepository.create({ ...createUserDto, password });
 
     return this.userRepository.save(newUser);
   }

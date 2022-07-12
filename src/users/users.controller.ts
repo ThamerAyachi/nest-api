@@ -28,9 +28,10 @@ export class UsersController {
   @UseInterceptors(ClassSerializerInterceptor)
   getUsers() {
     const users = this.usersService.getUsers();
-    if (users === []) {
-      throw new HttpException('Users is null', HttpStatus.BAD_REQUEST);
-    } else return users;
+    // if (users === []) {
+    //   throw new HttpException('Users is null', HttpStatus.BAD_REQUEST);
+    // } else return users;
+    return users;
   }
 
   @Get('/username/:username')
