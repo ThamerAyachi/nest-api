@@ -35,4 +35,8 @@ export class UsersService {
 
     return this.userRepository.save(newUser);
   }
+
+  findUserByUsername(username: string) {
+    return this.userRepository.findOneBy({ username });
+  }
 }
