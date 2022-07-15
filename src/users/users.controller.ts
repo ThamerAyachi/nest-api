@@ -9,10 +9,12 @@ import {
   ParseIntPipe,
   Post,
   UseFilters,
+  UseGuards,
   UseInterceptors,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { AuthenticatedGuard } from 'src/auth/utils/LocalGuard';
 import { CreateUserDto } from './dto/CreateUser.dto';
 import { UserNotFoundException } from './exceptions/UserNotFound.exception';
 import { HttpExceptionFilter } from './filters/HttpException.filter';
@@ -26,6 +28,7 @@ export class UsersController {
   @Get()
   @UseFilters(HttpExceptionFilter)
   @UseInterceptors(ClassSerializerInterceptor)
+  @UseGuards(AuthenticatedGuard)
   getUsers() {
     const users = this.usersService.getUsers();
     // if (users === []) {
