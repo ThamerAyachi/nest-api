@@ -5,6 +5,7 @@ import { CustomersModule } from './customors/customers.module';
 import entities from './typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { PaymentsModule } from './payments/payments.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     ConfigModule.forRoot(),
     AuthModule,
+    PaymentsModule,
   ],
   controllers: [],
   providers: [],
